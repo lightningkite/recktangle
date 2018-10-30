@@ -8,3 +8,4 @@ Geometry across platforms.
 - `Line`
 - `Rectangle`
 - `Polygon`
+- `Angle`
