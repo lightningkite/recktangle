@@ -7,21 +7,23 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
     }
 }
 apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'maven-publish'
 
 
 repositories {
     jcenter()
     mavenCentral()
     mavenLocal()
+    maven { url "https://kotlin.bintray.com/kotlinx" }
 }
 group 'com.lightningkite'
 version '0.0.1'
 
-apply plugin: 'maven-publish'
-apply plugin: 'kotlin-multiplatform'
 
 kotlin {
     targets {
@@ -32,7 +34,9 @@ kotlin {
         commonMain {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
-//                implementation "com.lightningkite:kommon:${project.version}"
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.0.0'
+                implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:0.9.0'
+                implementation "com.lightningkite:kommunicate:${project.version}"
             }
         }
         commonTest {
@@ -44,6 +48,8 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
+                implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.0'
             }
         }
         jvmTest {
@@ -54,6 +60,8 @@ kotlin {
         }
         jsMain {
             dependencies {
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.0.0'
+                implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.9.0'
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
             }
         }
@@ -62,5 +70,13 @@ kotlin {
                 implementation 'org.jetbrains.kotlin:kotlin-test-js'
             }
         }
+    }
+}
+
+tasks.withType(compileKotlinJs.getClass()) {
+    kotlinOptions {
+        moduleKind = "umd"
+        sourceMap = true
+        metaInfo = true
     }
 }
