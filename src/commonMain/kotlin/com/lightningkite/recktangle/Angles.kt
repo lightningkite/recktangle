@@ -12,7 +12,7 @@ import kotlin.math.tan
 
 @Suppress("NOTHING_TO_INLINE")
 
-inline class Angle(val circles: Float) {
+/*inline*/ data class Angle(val circles: Float) {
     companion object {
         const val RADIANS_PER_CIRCLE = (PI * 2).toFloat()
         const val DEGREES_PER_CIRCLE = 360f
@@ -47,7 +47,7 @@ inline class Angle(val circles: Float) {
 
 @Suppress("NOTHING_TO_INLINE")
 
-inline class DoubleAngle(val circles: Double) {
+/*inline*/ data class DoubleAngle(val circles: Double) {
     companion object {
         const val RADIANS_PER_CIRCLE = PI * 2
         const val DEGREES_PER_CIRCLE = 360
