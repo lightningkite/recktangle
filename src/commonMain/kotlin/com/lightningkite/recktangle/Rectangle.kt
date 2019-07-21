@@ -1,10 +1,10 @@
 package com.lightningkite.recktangle
 
-data class Rectangle(
-        var left: Float = 0f,
-        var top: Float = 0f,
-        var right: Float = 0f,
-        var bottom: Float = 0f
+class Rectangle(
+    var left: Float = 0f,
+    var top: Float = 0f,
+    var right: Float = 0f,
+    var bottom: Float = 0f
 ) {
     var centerX: Float
         get() = (left + right) / 2
