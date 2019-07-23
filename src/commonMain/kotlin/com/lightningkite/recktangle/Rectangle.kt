@@ -1,6 +1,6 @@
 package com.lightningkite.recktangle
 
-class Rectangle(
+data class Rectangle(
     var left: Float = 0f,
     var top: Float = 0f,
     var right: Float = 0f,
