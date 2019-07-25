@@ -1,9 +1,7 @@
 package com.lightningkite.recktangle
 
-import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.sin
-import kotlin.math.tan
+import com.lightningkite.recktangle.abs
+import kotlin.math.*
 
 /**
  * Various math functions.
@@ -47,4 +45,8 @@ inline class Angle(val circles: Float) {
     inline fun sin(): Float = sin(radians)
     inline fun cos(): Float = cos(radians)
     inline fun tan(): Float = tan(radians)
+
+    inline operator fun unaryMinus() = Angle(-circles)
 }
+
+fun abs(angle: Angle): Angle = Angle(abs(angle.circles))

@@ -11,3 +11,7 @@ fun assertCloseEnough(expected: Point?, actual: Point?) {
 fun assertCloseEnough(expected: Float, actual: Float) {
     assertTrue(abs(expected - actual) < .0001, "Expected close to $expected, actually $actual")
 }
+
+fun assertCloseEnough(expected: Angle, actual: Angle) {
+    assertTrue(abs(expected - actual).circles < .0001, "Expected close to $expected, actually $actual")
+}
