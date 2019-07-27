@@ -24,14 +24,26 @@ data class Point(var x: Float = 0f, var y: Float = 0f) {
         val c = angle.cos()
         val s = angle.sin()
         return Point(
-            x = this.x * c - this.y * s,
-            y = this.x * s + this.y * c
+                x = this.x * c - this.y * s,
+                y = this.x * s + this.y * c
         )
+    }
+
+    inline fun projectOnto(angle: Angle): Float {
+        return this.x * angle.cos() - this.y * angle.sin()
+    }
+    inline fun projectOnto(angleCos: Float, angleSin: Float): Float {
+        return this.x * angleCos - this.y * angleSin
     }
 
     fun set(other: Point) {
         x = other.x
         y = other.y
+    }
+
+    fun setPolar(angle: Angle, length: Float) {
+        x = angle.cos() * length
+        y = angle.sin() * length
     }
 
     inline val lengthSquared: Float

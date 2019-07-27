@@ -31,6 +31,9 @@ data class LineSegment(var first: Point = Point(), var second: Point = Point()) 
         return output
     }
 
+    inline val deltaX: Float get() = second.x - first.x
+    inline val deltaY: Float get() = second.y - first.y
+
     val angle: Angle get() = first angleTo second
     val length: Float get() = first distanceTo second
     fun interpolate(amount: Float, existing: Point = Point()): Point {

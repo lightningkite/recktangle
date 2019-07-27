@@ -7,44 +7,37 @@ inline class Matrix2D(val values: FloatArray = FloatArray(3 * 3)) {
         const val outputSize: Int = 3
 
         val identity = Matrix2D(
-            floatArrayOf(
-                1f, 0f, 0f,
-                0f, 1f, 0f,
-                0f, 0f, 1f
-            )
+                floatArrayOf(
+                        1f, 0f, 0f,
+                        0f, 1f, 0f,
+                        0f, 0f, 1f
+                )
         )
 
         fun rotate(angle: Angle) = Matrix2D(
-            floatArrayOf(
-                angle.cos(), -angle.sin(), 0f,
-                angle.sin(), angle.cos(), 0f,
-                0f, 0f, 1f
-            )
+                floatArrayOf(
+                        angle.cos(), -angle.sin(), 0f,
+                        angle.sin(), angle.cos(), 0f,
+                        0f, 0f, 1f
+                )
         )
 
         fun translate(point: Point) = Matrix2D(
-            floatArrayOf(
-                1f, 0f, 0f,
-                0f, 1f, 0f,
-                point.x, point.y, 1f
-            )
+                floatArrayOf(
+                        1f, 0f, point.x,
+                        0f, 1f, point.y,
+                        0f, 0f, 1f
+                )
         )
 
         fun scale(x: Float, y: Float) = Matrix2D(
-            floatArrayOf(
-                x, 0f, 0f,
-                0f, y, 0f,
-                0f, 0f, 1f
-            )
+                floatArrayOf(
+                        x, 0f, 0f,
+                        0f, y, 0f,
+                        0f, 0f, 1f
+                )
         )
 
-        fun rotateThenTranslate(angle: Angle, point: Point) = Matrix2D(
-            floatArrayOf(
-                angle.cos(), -angle.sin(), 0f,
-                angle.sin(), angle.cos(), 0f,
-                point.x, point.y, 1f
-            )
-        )
     }
 
 
@@ -88,21 +81,21 @@ inline class Matrix2D(val values: FloatArray = FloatArray(3 * 3)) {
             for (output in 0 until outputSize) {
                 for (cursor in 0 until outputSize) {
                     val adding = this.assuredGet(input, cursor) * other.assuredGet(cursor, output)
-                    val newValue = assuredGet(input, output) + adding
-                    assuredSet(input, output, newValue)
+                    val newValue = newMatrix.assuredGet(input, output) + adding
+                    newMatrix.assuredSet(input, output, newValue)
                 }
             }
         }
         return newMatrix
     }
 
-    infix fun before(other: Matrix2D): Matrix2D = this * other
-    infix fun after(other: Matrix2D): Matrix2D = other * this
+    infix fun before(other: Matrix2D): Matrix2D = other * this
+    infix fun after(other: Matrix2D): Matrix2D = this * other
 
     fun transform(values: Point): Point {
         return Point(
-            x = assuredGet(0, 0) * values.x + assuredGet(1, 0) * values.y + assuredGet(2, 0),
-            y = assuredGet(0, 1) * values.x + assuredGet(1, 1) * values.y + assuredGet(2, 1)
+                x = assuredGet(0, 0) * values.x + assuredGet(1, 0) * values.y + assuredGet(2, 0),
+                y = assuredGet(0, 1) * values.x + assuredGet(1, 1) * values.y + assuredGet(2, 1)
         )
     }
 
