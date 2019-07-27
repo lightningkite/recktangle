@@ -269,8 +269,9 @@ data class Polygon(
         return (this.lineSequence(data.calculationLine) + other.lineSequence(data.calculationLine))
                 .map {
                     val length = it.length
-                    val angleCos = it.deltaX// / length
-                    val angleSin = it.deltaY// / length
+                    //These seem flipped; that's because we're checking normals
+                    val angleCos = it.deltaY// / length
+                    val angleSin = it.deltaX// / length
                     data.angleCos = angleCos
                     data.angleSin = angleSin
                     val me = this.projectOnto(angleCos, angleSin, data.myRange)
