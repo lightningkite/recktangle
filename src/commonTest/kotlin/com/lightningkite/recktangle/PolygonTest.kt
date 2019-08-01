@@ -69,9 +69,18 @@ class PolygonTest {
     }
 
     @Test
-    fun area(){
+    fun area() {
         assertCloseEnough(1f, Polygon.rect(1f, 1f).area())
         assertCloseEnough(2f, Polygon.rect(2f, 1f).area())
         assertCloseEnough(4f, Polygon.rect(2f, 2f).area())
+    }
+
+    @Test
+    fun contains() {
+        assertTrue(Polygon.rect(1f, 1f).contains(Point(0f, 0f)))
+        assertFalse(Polygon.rect(1f, 1f).contains(Point(2f, 0f)))
+        assertFalse(Polygon.rect(1f, 1f).contains(Point(-2f, 0f)))
+        assertFalse(Polygon.rect(1f, 1f).contains(Point(0f, 2f)))
+        assertFalse(Polygon.rect(1f, 1f).contains(Point(0f, -2f)))
     }
 }

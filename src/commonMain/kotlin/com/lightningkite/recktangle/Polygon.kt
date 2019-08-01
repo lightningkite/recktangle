@@ -200,7 +200,7 @@ data class Polygon(
         calculationLineA.first.set(point)
         calculationLineA.second.set(point)
         calculationLineA.second.x = 100000f
-        return lineSequence(calculationLineB).count { it intersects calculationLineA } % 2 == 0
+        return lineSequence(calculationLineB).count { it intersects calculationLineA } % 2 == 1
     }
 
 
