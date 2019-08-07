@@ -307,49 +307,4 @@ data class Polygon(
         output.y = bestDistance * bestAngleSin
         return output
     }
-
-//    infix fun intersects(other: Polygon): Boolean = intersects(other, LineSegment(), LineSegment())
-//    fun intersects(other: Polygon, lineA: LineSegment, lineB: LineSegment): Boolean {
-//        return lineSequence(lineA).any {
-//            other.lineSequence(lineB).any {
-//                lineA intersects lineB
-//            }
-//        }
-//    }
-//
-//    //TODO: Do properly with Separating Axis Theorem
-//    infix fun distanceTo(other: Polygon): Float = distanceTo(other, LineSegment())
-//    fun distanceTo(other: Polygon, calculationLine: LineSegment): Float {
-//        var bestDistance = Float.MAX_VALUE
-//        for (point in this.points) {
-//            val newDist = other.distanceTo(point, calculationLine)
-//            if (newDist < bestDistance) {
-//                bestDistance = newDist
-//            }
-//        }
-//        for (point in other.points) {
-//            val newDist = this.distanceTo(point, calculationLine)
-//            if (newDist < bestDistance) {
-//                bestDistance = newDist
-//            }
-//        }
-//        return bestDistance
-//    }
-//
-//    fun distanceToBestDetailed(other: Polygon, calculationPointResult: PointResult, output: PointResult): PointResult {
-//        output.distance = Float.MAX_VALUE
-//        for (point in this.points) {
-//            other.distanceToDetailed(point, calculationPointResult)
-//            if (calculationPointResult.distance < output.distance) {
-//                output.set(calculationPointResult)
-//            }
-//        }
-//        for (point in other.points) {
-//            this.distanceToDetailed(point, calculationPointResult)
-//            if (calculationPointResult.distance < output.distance) {
-//                output.set(calculationPointResult)
-//            }
-//        }
-//        return output
-//    }
 }
